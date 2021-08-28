@@ -1,0 +1,217 @@
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    schedule:
+      interval: daily
+    ignore:
+      - dependency-name: "jina"
+        update-types: ["version-update:semver-patch", "version-update:semver-major"]
+    directory: "advanced-vector-search"
+    allow:
+      - dependency-name: "jina"
+        dependency-type: "direct"
+    open-pull-requests-limit: 1
+
+  - package-ecosystem: "docker"
+    schedule:
+      interval: daily
+    ignore:
+      - dependency-name: "jina"
+        update-types: ["version-update:semver-patch", "version-update:semver-major"]
+    directory: "advanced-vector-search"
+    allow:
+      - dependency-name: "jina"
+        dependency-type: "direct"
+    open-pull-requests-limit: 1
+
+  - package-ecosystem: "pip"
+    schedule:
+      interval: daily
+    ignore:
+      - dependency-name: "jina"
+        update-types: ["version-update:semver-patch", "version-update:semver-major"]
+    directory: "audio-search"
+    allow:
+      - dependency-name: "jina"
+        dependency-type: "direct"
+    open-pull-requests-limit: 1
+
+  - package-ecosystem: "docker"
+    schedule:
+      interval: daily
+    ignore:
+      - dependency-name: "jina"
+        update-types: ["version-update:semver-patch", "version-update:semver-major"]
+    directory: "audio-search"
+    allow:
+      - dependency-name: "jina"
+        dependency-type: "direct"
+    open-pull-requests-limit: 1
+
+  - package-ecosystem: "pip"
+    schedule:
+      interval: daily
+    ignore:
+      - dependency-name: "jina"
+        update-types: ["version-update:semver-patch", "version-update:semver-major"]
+    directory: "chinese-text-search"
+    allow:
+      - dependency-name: "jina"
+        dependency-type: "direct"
+    open-pull-requests-limit: 1
+
+  - package-ecosystem: "pip"
+    schedule:
+      interval: daily
+    ignore:
+      - dependency-name: "jina"
+        update-types: ["version-update:semver-patch", "version-update:semver-major"]
+    directory: "cross-modal-search"
+    allow:
+      - dependency-name: "jina"
+        dependency-type: "direct"
+    open-pull-requests-limit: 1
+
+  - package-ecosystem: "docker"
+    schedule:
+      interval: daily
+    ignore:
+      - dependency-name: "jina"
+        update-types: ["version-update:semver-patch", "version-update:semver-major"]
+    directory: "cross-modal-search"
+    allow:
+      - dependency-name: "jina"
+        dependency-type: "direct"
+    open-pull-requests-limit: 1
+
+  - package-ecosystem: "pip"
+    schedule:
+      interval: daily
+    ignore:
+      - dependency-name: "jina"
+        update-types: ["version-update:semver-patch", "version-update:semver-major"]
+    directory: "fashion-example-query"
+    allow:
+      - dependency-name: "jina"
+        dependency-type: "direct"
+    open-pull-requests-limit: 1
+
+  - package-ecosystem: "docker"
+    schedule:
+      interval: daily
+    ignore:
+      - dependency-name: "jina"
+        update-types: ["version-update:semver-patch", "version-update:semver-major"]
+    directory: "fashion-example-query"
+    allow:
+      - dependency-name: "jina"
+        dependency-type: "direct"
+    open-pull-requests-limit: 1
+
+  - package-ecosystem: "pip"
+    schedule:
+      interval: daily
+    ignore:
+      - dependency-name: "jina"
+        update-types: ["version-update:semver-patch", "version-update:semver-major"]
+    directory: "multimodal-search-tirg"
+    allow:
+      - dependency-name: "jina"
+        dependency-type: "direct"
+    open-pull-requests-limit: 1
+
+  - package-ecosystem: "pip"
+    schedule:
+      interval: daily
+    ignore:
+      - dependency-name: "jina"
+        update-types: ["version-update:semver-patch", "version-update:semver-major"]
+    directory: "multires-lyrics-search"
+    allow:
+      - dependency-name: "jina"
+        dependency-type: "direct"
+    open-pull-requests-limit: 1
+
+  - package-ecosystem: "docker"
+    schedule:
+      interval: daily
+    ignore:
+      - dependency-name: "jina"
+        update-types: ["version-update:semver-patch", "version-update:semver-major"]
+    directory: "multires-lyrics-search"
+    allow:
+      - dependency-name: "jina"
+        dependency-type: "direct"
+    open-pull-requests-limit: 1
+
+  - package-ecosystem: "pip"
+    schedule:
+      interval: daily
+    ignore:
+      - dependency-name: "jina"
+        update-types: ["version-update:semver-patch", "version-update:semver-major"]
+    directory: "object-search"
+    allow:
+      - dependency-name: "jina"
+        dependency-type: "direct"
+    open-pull-requests-limit: 1
+
+  - package-ecosystem: "docker"
+    schedule:
+      interval: daily
+    ignore:
+      - dependency-name: "jina"
+        update-types: ["version-update:semver-patch", "version-update:semver-major"]
+    directory: "object-search"
+    allow:
+      - dependency-name: "jina"
+        dependency-type: "direct"
+    open-pull-requests-limit: 1
+
+  - package-ecosystem: "pip"
+    schedule:
+      interval: daily
+    ignore:
+      - dependency-name: "jina"
+        update-types: ["version-update:semver-patch", "version-update:semver-major"]
+    directory: "pokedex-with-bit"
+    allow:
+      - dependency-name: "jina"
+        dependency-type: "direct"
+    open-pull-requests-limit: 1
+
+  - package-ecosystem: "docker"
+    schedule:
+      interval: daily
+    ignore:
+      - dependency-name: "jina"
+        update-types: ["version-update:semver-patch", "version-update:semver-major"]
+    directory: "pokedex-with-bit"
+    allow:
+      - dependency-name: "jina"
+        dependency-type: "direct"
+    open-pull-requests-limit: 1
+
+  - package-ecosystem: "pip"
+    schedule:
+      interval: daily
+    ignore:
+      - dependency-name: "jina"
+        update-types: ["version-update:semver-patch", "version-update:semver-major"]
+    directory: "tumblr-gif-search"
+    allow:
+      - dependency-name: "jina"
+        dependency-type: "direct"
+    open-pull-requests-limit: 1
+
+  - package-ecosystem: "pip"
+    schedule:
+      interval: daily
+    ignore:
+      - dependency-name: "jina"
+        update-types: ["version-update:semver-patch", "version-update:semver-major"]
+    directory: "wikipedia-sentences"
+    allow:
+      - dependency-name: "jina"
+        dependency-type: "direct"
+    open-pull-requests-limit: 1

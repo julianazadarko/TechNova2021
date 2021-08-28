@@ -1,0 +1,27 @@
+name: CI
+
+on: [pull_request]
+
+jobs:
+  example-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.7', '3.8']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - id: changed-files
+        uses: jitterbit/get-changed-files@v1
+        continue-on-error: true
+      - name: ci
+        run: ./.github/ci.sh
+        timeout-minutes: 20
+        env:
+          CHANGED_FILES: ${{ steps.changed-files.outputs.all }}
+          AWS_ACCESS_KEY_ID: AKIAWB5UZPEQHHYDKVUC
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_DEVBOT_AKIAWB5UZPEQHHYDKVUC }}
