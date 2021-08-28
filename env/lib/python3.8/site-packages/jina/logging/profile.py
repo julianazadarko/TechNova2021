@@ -1,0 +1,269 @@
+import sys
+import time
+from collections import defaultdict
+from functools import wraps
+from typing import Optional
+
+from .logger import JinaLogger
+from ..helper import colored, get_readable_size, get_readable_time
+
+
+def used_memory(unit: int = 1024 * 1024 * 1024) -> float:
+    """
+    Get the memory usage of the current process.
+
+    :param unit: Unit of the memory, default in Gigabytes.
+    :return: Memory usage of the current process.
+    """
+    import resource
+
+    return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / unit
+
+
+def used_memory_readable() -> str:
+    """
+    Get the memory usage of the current process in a human-readable format.
+
+    :return: Memory usage of the current process.
+    """
+    return get_readable_size(used_memory(1))
+
+
+def profiling(func):
+    """
+    Create the Decorator to mark a function for profiling. The time and memory usage will be recorded and printed.
+
+    Example:
+    .. highlight:: python
+    .. code-block:: python
+
+        @profiling
+        def foo():
+            print(1)
+
+    :param func: function to be profiled
+    :return: arguments wrapper
+    """
+    from .predefined import default_logger
+
+    @wraps(func)
+    def arg_wrapper(*args, **kwargs):
+        start_t = time.perf_counter()
+        start_mem = used_memory(unit=1)
+        r = func(*args, **kwargs)
+        elapsed = time.perf_counter() - start_t
+        end_mem = used_memory(unit=1)
+        # level_prefix = ''.join('-' for v in inspect.stack() if v and v.index is not None and v.index >= 0)
+        level_prefix = ''
+        mem_status = f'memory Δ {get_readable_size(end_mem - start_mem)} {get_readable_size(start_mem)} -> {get_readable_size(end_mem)}'
+        default_logger.info(
+            f'{level_prefix} {func.__qualname__} time: {elapsed}s {mem_status}'
+        )
+        return r
+
+    return arg_wrapper
+
+
+class TimeDict:
+    """Records of time information."""
+
+    def __init__(self):
+        self.accum_time = defaultdict(float)
+        self.first_start_time = defaultdict(float)
+        self.start_time = defaultdict(float)
+        self.end_time = defaultdict(float)
+        self._key_stack = []
+        self._pending_reset = False
+
+    def __enter__(self):
+        _key = self._key_stack[-1]
+        # store only the first enter time
+        if _key not in self.first_start_time:
+            self.first_start_time[_key] = time.perf_counter()
+        self.start_time[_key] = time.perf_counter()
+        return self
+
+    def __exit__(self, typ, value, traceback):
+        _key = self._key_stack.pop()
+        self.end_time[_key] = time.perf_counter()
+        self.accum_time[_key] += self.end_time[_key] - self.start_time[_key]
+        if self._pending_reset:
+            self.reset()
+
+    def __call__(self, key: str, *args, **kwargs):
+        """
+        Add time counter.
+
+        :param key: key name of the counter
+        :param args: extra arguments
+        :param kwargs: keyword arguments
+        :return: self object
+        """
+        self._key_stack.append(key)
+        return self
+
+    def reset(self):
+        """Clear the time information."""
+        if self._key_stack:
+            self._pending_reset = True
+        else:
+            self.accum_time.clear()
+            self.start_time.clear()
+            self.first_start_time.clear()
+            self.end_time.clear()
+            self._key_stack.clear()
+            self._pending_reset = False
+
+    def __str__(self):
+        return ' '.join(f'{k}: {v:3.1f}s' for k, v in self.accum_time.items())
+
+
+class TimeContext:
+    """Timing a code snippet with a context manager."""
+
+    time_attrs = ['years', 'months', 'days', 'hours', 'minutes', 'seconds']
+
+    def __init__(self, task_name: str, logger: 'JinaLogger' = None):
+        """
+        Create the context manager to timing a code snippet.
+
+        :param task_name: The context/message.
+        :param logger: Use existing logger or use naive :func:`print`.
+
+        Example:
+        .. highlight:: python
+        .. code-block:: python
+
+            with TimeContext('loop'):
+                do_busy()
+
+        """
+        self.task_name = task_name
+        self._logger = logger
+        self.duration = 0
+
+    def __enter__(self):
+        self.start = time.perf_counter()
+        self._enter_msg()
+        return self
+
+    def _enter_msg(self):
+        if self._logger:
+            self._logger.info(self.task_name + '...')
+        else:
+            print(self.task_name, end=' ...\t', flush=True)
+
+    def __exit__(self, typ, value, traceback):
+        self.duration = self.now()
+
+        self.readable_duration = get_readable_time(seconds=self.duration)
+
+        self._exit_msg()
+
+    def now(self) -> float:
+        """
+        Get the passed time from start to now.
+
+        :return: passed time
+        """
+        return time.perf_counter() - self.start
+
+    def _exit_msg(self):
+        if self._logger:
+            self._logger.info(
+                f'{self.task_name} takes {self.readable_duration} ({self.duration:.2f}s)'
+            )
+        else:
+            print(
+                colored(
+                    f'{self.task_name} takes {self.readable_duration} ({self.duration:.2f}s)'
+                ),
+                flush=True,
+            )
+
+
+class ProgressBar(TimeContext):
+    """
+    A simple progress bar.
+
+    Example:
+        .. highlight:: python
+        .. code-block:: python
+
+            with ProgressBar('loop'):
+                do_busy()
+    """
+
+    def __init__(
+        self,
+        bar_len: int = 20,
+        task_name: str = '',
+        logger=None,
+    ):
+        """
+        Create the ProgressBar.
+
+        :param bar_len: Total length of the bar.
+        :param task_name: The name of the task, will be displayed in front of the bar.
+        :param logger: Jina logger
+        """
+        super().__init__(task_name, logger)
+        self.bar_len = bar_len
+        self.num_docs = 0
+        self._ticks = 0
+
+    def update_tick(self, tick: float = 0.1) -> None:
+        """
+        Increment the progress bar by one tick, when the ticks accumulate to one, trigger one :meth:`update`.
+
+        :param tick: A float unit to increment (should < 1).
+        """
+        self._ticks += tick
+        if self._ticks > 1:
+            self.update()
+            self._ticks = 0
+
+    def update(self, progress: Optional[int] = None, *args, **kwargs) -> None:
+        """
+        Increment the progress bar by one unit.
+
+        :param progress: The number of unit to increment.
+        :param args: extra arguments
+        :param kwargs: keyword arguments
+        """
+        self.num_reqs += 1
+        sys.stdout.write('\r')
+        elapsed = time.perf_counter() - self.start
+        num_bars = self.num_reqs % self.bar_len
+        num_bars = self.bar_len if not num_bars and self.num_reqs else max(num_bars, 1)
+        if progress:
+            self.num_docs += progress
+
+        sys.stdout.write(
+            '⏳ {:>10} |{:<{}}| ⏱️ {:3.1f}s 🐎 {:3.1f} RPS'.format(
+                colored(self.task_name, 'cyan'),
+                colored('█' * num_bars, 'green'),
+                self.bar_len + 9,
+                elapsed,
+                self.num_reqs / elapsed,
+            )
+        )
+        if num_bars == self.bar_len:
+            sys.stdout.write('\n')
+        sys.stdout.flush()
+
+    def __enter__(self):
+        super().__enter__()
+        self.num_reqs = -1
+        self.num_docs = 0
+        self.update()
+        return self
+
+    def _enter_msg(self):
+        pass
+
+    def _exit_msg(self):
+        speed = self.num_reqs / self.duration
+        sys.stdout.write(
+            f'{f"✅ {self.num_reqs} requests done in ⏱ {self.readable_duration} 🐎 {speed:3.1f} RPS"}\n'
+        )

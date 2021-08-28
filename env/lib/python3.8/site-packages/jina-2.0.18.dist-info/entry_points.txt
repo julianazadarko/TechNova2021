@@ -1,0 +1,4 @@
+[console_scripts]
+jina = cli:main
+jinad = daemon:main
+
