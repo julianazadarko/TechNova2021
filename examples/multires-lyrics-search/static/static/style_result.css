@@ -116,3 +116,10 @@ body {
 .next__button{
   margin-top:-10px;
 }
+
+
+.hidden__input{
+  display: none;
+  visibility: none;
+}
+

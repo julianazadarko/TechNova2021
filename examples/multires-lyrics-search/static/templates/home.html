@@ -2,6 +2,7 @@
  <head>
   <link href="static/style_home.css" rel="stylesheet"/>
   <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  </head>
  <div class="header">
   <span class="header__content">
@@ -13,13 +14,27 @@
  <body>
    <p class="main__text">Find me a song that describes...<p>
   <div class="container">
-    <form action="/action_page.php" class="search__form">
       <div class="search__center">
-      <textarea  name="searchb" class="search__bar" id="searchb"></textarea>
-      <input type="image"  src="static/img/magnify.svg" name="goHome" class="magnify__button" id="goHome" />
+      <textarea  name="searchb" id="sb" class="search__bar" id="searchb"></textarea>
+  <form action="result" method="POST" class="wrapped__form" id="goresultform">    
+      <input type="text" name="user_input" class="hidden__input" id="q1rf"/>
+      <input type="image"  src="static/img/magnify.svg" name="goResult" class="magnify__button" id="goHome" />
+  </form>
+
+
+ <script>
+    var $form = $('#goresultform');
+    $form.submit(function(e) {
+        console.log($('#sb').val());
+    var sb = $('#sb').val();
+    
+
+    $form.find('input[name="user_input"]').val(sb);
+});
+ </script>
+
+      </div>
     </div>
-    </div>
-    </form>
  
   </div>
 </div>

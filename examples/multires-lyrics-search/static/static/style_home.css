@@ -123,3 +123,16 @@ input {
   font-size: 1em;
 
 }
+
+
+.wrapped__form{
+  display: inline;
+}
+
+
+
+.hidden__input{
+  display: none;
+  visibility: none;
+}
+
