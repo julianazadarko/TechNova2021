@@ -1,0 +1,118 @@
+.header {
+  width:100%;
+  height:20%;
+  position:absolute;
+  top:0;
+  left:0;
+  background-color:#05A8AA;
+  display: flex;
+  margin: 0 auto;
+ 
+  align-items: center;
+  align-content: center;
+  
+  font-family: 'Lato', sans-serif;
+}
+
+.span{
+  display: table-cell;
+  vertical-align: middle;
+  
+}
+
+.header__line {
+  margin: 0 auto;
+  margin-left: -20px;
+  padding:0;
+  width:100%;
+  height: 20.5%;
+  float:bottom;
+  background-color:#FFE66D;
+  font-family: 'Lato', sans-serif;
+  min-width:130%
+}
+
+.header__text{
+  padding-top:10px;
+  font-size:32px;
+  font-weight: bold;
+}
+
+.header__content{
+  margin: 0 auto;
+  margin-bottom: 15px;
+  padding-right: 50px;
+  vertical-align: middle;
+  align-content: center;
+  display:flex;
+}
+
+.header__icon{
+  width: 55%;
+}
+
+.main__text{
+  margin-top: 20px;
+  font-family: 'Lato', sans-serif;
+  font-size:40px;
+  font-weight: bold;
+  margin-left: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.second__text{
+  margin-top: 10px;
+  font-family: 'Lato', sans-serif;
+  font-size:30px;
+  font-weight: bold;
+  margin-left: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+body {
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  
+}
+
+.main__content{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 75%;
+  margin: 0 auto;
+}
+
+.album__icon{
+  flex: 1;
+  max-width: 30%;
+  max-height: 30%;
+}
+
+.main__info {
+  flex: 1;
+}
+
+.icons {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin-top:-10px;
+}
+
+.spotify__button{
+  margin-right: 10px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.youtube__button{
+  margin-left: 10px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.next__button{
+  margin-top:-10px;
+}
