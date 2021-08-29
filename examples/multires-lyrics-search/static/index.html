@@ -1,33 +1,88 @@
 <html>
  <head>
-  <link href="static/style_result.css" rel="stylesheet"/>
-  <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <link href="style.css" rel="stylesheet"/>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
  </head>
  <div class="header">
   <span class="header__content">
-    <img class="header__icon" src="static/img/trumpet.svg" alt="trumpet">
+    <img class="header__icon" src="img/trumpet.svg" alt="trumpet">
     <p class="header__text">Change<br>My Tune</p>
   </span>
  </div>
  <div class="header__line"></div>
  <body>
-   <p class="main__text">"What you searched"</p>
-    <div class="main__content">
-      <img class="album__icon" src="static/img/album_ex.jpg" alt="album cover">
-      <div class="main__info">
-        <p class="second__text">We think 'this song' by Artist is exactly what you're looking for.</p>
-          <div class="icons">
-            <input type="image" src="static/img/spotify.svg" name="goSpotify" class="spotify__button" id="goSpotify" />
-            <input type="image" src="static/img/youtube.svg" name="goYoutube" class="youtube__button" id="goYoutube" />
-          </div>
-          <div>
-            <p class="second__text">Ready to continue to lyric analysis?</p>
-              <form action="result" method="POST" class="wrapped__form" id="goAnalysisform">
-              <input type="image" src="static/img/next.svg" name="goAnalysis" class="next__button" id="goAnalysis" />
-              </form>
-          </div>
-          
-      </div>
+   <div class="info__container">
+   <div class="info">
+     <div class="placeholder"></div>
+<div class="album">
+ <img class="album__icon" src="img/album_ex.jpg" alt="album cover">
+ <p class="album__text">"this song" by Artist</p>
+</div>
+ <div class="action__buttons">
+  <form action="home.html" class="wrapped__form">
+  <input type="image" src="img/home.svg" name="goHome" class="home__button" id="goHome" />
+  </form>
+  <input type="image" src="img/save.svg" name="goSave" class="save__button" id="goSave" />
+ </div>
+</div>
+</div>
+  <div class="row">
+    <div class="column is-active">
+      <p class="step__label">
+        <a data-switcher data-tab="1">Step 1: Explore</a>
+      </p>
     </div>
- </body>
+    <div class="column">
+      <p class="step__label">
+        <a data-switcher data-tab="2">Step 2: Relate</a>
+      </p>
+    </div>
+    <div class="column">
+      <p class="step__label">
+        <a data-switcher data-tab="3">Step 3: Apply</a>
+      </p>
+    </div>
+  </div>
+  <div class="input-qs">
+    <div class="q-group is-active" data-page="1">
+      <table class="questions">
+        <tr>
+            <td class="prompt">Tell me about this lyric: ***feed lyric that prompted the song***</td>
+            <td><div class="prompt__resp" contentEditable="true"></div></td>
+        </tr>
+        <tr>
+          <td class="prompt">Which lyrics represent thoughts or ideas that are distorted, irrational, or unhealthy?</td>
+          <td><div class="prompt__resp" contentEditable="true"></div></td>
+        </tr>
+      </table>
+    </div>
+    <div class="q-group" data-page="2">
+      <table class="questions">
+        <tr>
+            <td class="prompt">How does the song connect with what you are going through?</td>
+            <td><div class="prompt__resp" contentEditable="true"></div></td>
+        </tr>
+        <tr>
+          <td class="prompt">What is going through your mind right now?</td>
+          <td><div class="prompt__resp" contentEditable="true"></div></td>
+        </tr>
+      </table>
+    </div>
+    <div class="q-group" data-page="3">
+      <table class="questions">
+        <tr>
+            <td class="prompt">How would you like to respond to the emotion you are feeling?</td>
+            <td><div class="prompt__resp" contentEditable="true"></div></td>
+        </tr>
+        <tr>
+          <td class="prompt">What would you tell a friend or close family member in a similar situation?</td>
+          <td><div class="prompt__resp" contentEditable="true"></div></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script src="tabs.js"></script>
+</body>
+
+
 </html>

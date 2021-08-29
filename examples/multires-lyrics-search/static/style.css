@@ -67,6 +67,15 @@
 
 .column:hover{
   height: 110%;
+  background-color: #FFE66D;
+  border-color: #05A8AA;
+}
+
+.column.is-active {
+  height: 110%;
+  background-color: #05A8AA;
+  border-color: #05A8AA;
+  color: #FFE66D;
 }
 
 .row{
@@ -88,6 +97,21 @@
   font-family: 'Lato', sans-serif;
   font-size:18px;
   font-weight: bold;
+}
+
+/* dynamic tabs */
+
+.row .column a[data-switcher] {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.input-qs .q-group {
+  display: none;
+}
+
+.input-qs .q-group.is-active {
+  display: block;
 }
 
 .album__icon{
