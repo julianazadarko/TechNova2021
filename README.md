@@ -10,6 +10,6 @@ Linux systems:
 7. If you haven't previously, follow https://cloud.google.com/docs/authentication/getting-started and set `export GOOGLE_APPLICATION_CREDENTIALS="/home/user/Downloads/service-account-file.json`"
 8. cd static/static, run FLASK_ALL="app.py" flask run
 
-Previously,
+Previously, the steps were
 7. cd static, run `python3 -m http.server 9000`
 8. go to `localhost:9000`
