@@ -1,51 +1,27 @@
 <html>
  <head>
-    <link href="style.css" rel="stylesheet"/>
-    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+  <link href="static/style_home.css" rel="stylesheet"/>
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
  </head>
  <div class="header">
   <span class="header__content">
-    <img class="header__icon" src="img/trumpet.svg" alt="trumpet">
+    <img class="header__icon" src="static/img/trumpet.svg" alt="trumpet">
     <p class="header__text">Change<br>My Tune</p>
   </span>
  </div>
  <div class="header__line"></div>
  <body>
-   <div class="info__container">
-   <div class="info">
-     <div class="placeholder"></div>
-<div class="album">
- <img class="album__icon" src="img/album_ex.jpg" alt="album cover">
- <p class="album__text">"this song" by Artist</p>
-</div>
- <div class="action__buttons">
-  <form action="home.html" class="wrapped__form">
-  <input type="image" src="img/home.svg" name="goHome" class="home__button" id="goHome" />
-  </form>
-  <input type="image" src="img/save.svg" name="goSave" class="save__button" id="goSave" />
- </div>
-</div>
-</div>
-  <div class="row">
-    <div class="column">
-      <p class="step__label">Step 1: Explore</p>
+   <p class="main__text">Find me a song that describes...<p>
+  <div class="container">
+    <form action="/action_page.php" class="search__form">
+      <div class="search__center">
+      <textarea  name="searchb" class="search__bar" id="searchb"></textarea>
+      <input type="image"  src="static/img/magnify.svg" name="goHome" class="magnify__button" id="goHome" />
     </div>
-    <div class="column">
-      <p class="step__label">Step 2: Relate</p>
     </div>
-    <div class="column">
-      <p class="step__label">Step 3: Apply</p>
-    </div>
+    </form>
+ 
   </div>
-  <table class="questions">
-    <tr>
-        <td class="prompt">Tell me about this lyric: "lyric that prompted the song"</td>
-        <td><div class="prompt__resp" contentEditable="true"></div></td>
-    </tr>
-    <tr>
-      <td class="prompt">Tell me about this lyric: "lyric that prompted the song"</td>
-      <td><div class="prompt__resp" contentEditable="true"></div></td>
-    </tr>
-</table>
-</body>
+</div>
+ </body>
 </html>
