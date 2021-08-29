@@ -1,0 +1,22 @@
+<svg width="342" height="131" viewBox="0 0 342 131" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M293.154 30.3091C295.707 27.8881 299.916 29.7043 299.907 33.2224L299.69 111.813C299.681 115.117 295.896 116.986 293.267 114.984L268.891 96.4201C266.09 94.2873 263.049 92.4904 259.829 91.0665L226.712 76.4185C223.33 74.9228 223.615 70.033 227.147 68.9393L254.64 60.4265C261.241 58.3826 267.283 54.8458 272.297 50.0904L293.154 30.3091Z" fill="#FFE66D"/>
+<rect y="65" width="299" height="14" fill="#FFE66D"/>
+<mask id="path-3-inside-1" fill="white">
+<rect x="45" y="65" width="213" height="59" rx="4"/>
+</mask>
+<rect x="45" y="65" width="213" height="59" rx="4" stroke="#FFE66D" stroke-width="16" mask="url(#path-3-inside-1)"/>
+<rect x="77" y="56" width="13" height="75" fill="#FFE66D"/>
+<rect x="116" y="56" width="13" height="75" fill="#FFE66D"/>
+<rect x="97" y="56" width="12" height="75" fill="#FFE66D"/>
+<rect x="79" y="102" width="154" height="14" rx="2" stroke="#FFE66D" stroke-width="4"/>
+<path d="M293.154 30.3091C295.707 27.8881 299.916 29.7043 299.907 33.2224L299.69 111.813C299.681 115.117 295.896 116.986 293.267 114.984L268.891 96.4201C266.09 94.2873 263.049 92.4904 259.829 91.0665L226.712 76.4185C223.33 74.9228 223.615 70.033 227.147 68.9393L254.64 60.4265C261.241 58.3826 267.283 54.8458 272.297 50.0904L293.154 30.3091Z" fill="#FFE66D"/>
+<rect y="65" width="299" height="14" fill="#FFE66D"/>
+<mask id="path-10-inside-2" fill="white">
+<rect x="45" y="65" width="213" height="59" rx="4"/>
+</mask>
+<rect x="45" y="65" width="213" height="59" rx="4" stroke="#FFE66D" stroke-width="16" mask="url(#path-10-inside-2)"/>
+<rect x="77" y="56" width="13" height="75" fill="#FFE66D"/>
+<rect x="116" y="56" width="13" height="75" fill="#FFE66D"/>
+<rect x="97" y="56" width="12" height="75" fill="#FFE66D"/>
+<rect x="79" y="102" width="154" height="14" rx="2" stroke="#FFE66D" stroke-width="4"/>
+</svg>

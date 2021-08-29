@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <link href="static/style.css" rel="stylesheet"/>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+ <div class="header">
+  <span class="header__content">
+    <img class="header__icon" src="static/img/trumpet.svg" alt="trumpet">
+    <p class="header__text">Change<br>My Tune</p>
+  </span>
+ </div>
+ <div class="header__line"></div>
+ <body>
+   <div class="info__container">
+   <div class="info">
+     <div class="placeholder"></div>
+<div class="album">
+ <img class="album__icon" src="static/img/album_ex.jpg" alt="album cover">
+ <p class="album__text">"this song" by Artist</p>
+</div>
+ <div class="action__buttons">
+  <form action="home.html" class="wrapped__form">
+  <input type="image" src="static/img/home.svg" name="goHome" class="home__button" id="goHome" />
+  </form>
+  <form action="." method="POST" class="wrapped__form" id="form">
+      <input type="text" name="q1rf" class="hidden__input" id="q1rf"/>
+      <input type="text" name="q2rf" class="hidden__input" id="q2rf"/>
+   <input type="image" src="static/img/save.svg" name="goSave" class="save__button" id="goSave" />
+  </form>
+
+ <script>
+    var $form = $('form');
+    $form.submit(function(e) {
+    var q1r = $('#q1r').text(),
+        q2r = $('#q2r').text();
+    
+
+    $form.find('input[name="q1rf"]').val(q1r);
+    $form.find('input[name="q2rf"]').val(q2r);
+});
+ </script>
+
+ <script>
+
+$(document).ready(function(){
+   var $form = $('form');
+   $form.submit(function(){
+      $.post($(this).attr('action'), $(this).serialize(), function(response){
+            // do something here on success
+          myFunction();
+      },'json');
+      return false;
+   });
+});
+ </script>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("snackbar");
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+</script>
+
+<div id="snackbar">Save Successful!</div>
+
+ </div>
+</div>
+</div>
+  <div class="row">
+    <div class="column">
+      <p class="step__label">Step 1: Explore</p>
+    </div>
+    <div class="column">
+      <p class="step__label">Step 2: Relate</p>
+    </div>
+    <div class="column">
+      <p class="step__label">Step 3: Apply</p>
+    </div>
+  </div>
+  <table class="questions">
+    <tr>
+        <td class="prompt">Tell me about this lyric: "lyric that prompted the song"</td>
+        <td><div class="prompt__resp" id="q1r" contentEditable="true"></div></td>
+    </tr>
+    <tr>
+      <td class="prompt">Tell me about this lyric: "lyric that prompted the song"</td>
+      <td><div class="prompt__resp" id="q2r" contentEditable="true"></div></td>
+    </tr>
+</table>
+</body>
+</html>
