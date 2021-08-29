@@ -11,6 +11,11 @@ app = Flask(__name__)
 def my_form():
     return render_template("index.html") # this should be the name of your html file
 
+@app.route('/home', methods=['POST'])
+def go_home():
+    print("entered home")
+    return render_template("home.html") # this should be the name of your html file
+
 @app.route('/', methods=['POST'])
 def my_form_post():
     print("hello")

@@ -20,7 +20,7 @@
  <p class="album__text">"this song" by Artist</p>
 </div>
  <div class="action__buttons">
-  <form action="home.html" class="wrapped__form">
+  <form action="home" method="POST" class="wrapped__form" id="gohomeform">
   <input type="image" src="static/img/home.svg" name="goHome" class="home__button" id="goHome" />
   </form>
   <form action="." method="POST" class="wrapped__form" id="form">
@@ -30,7 +30,7 @@
   </form>
 
  <script>
-    var $form = $('form');
+    var $form = $('#form');
     $form.submit(function(e) {
     var q1r = $('#q1r').text(),
         q2r = $('#q2r').text();
@@ -44,12 +44,13 @@
  <script>
 
 $(document).ready(function(){
-   var $form = $('form');
+   var $form = $('#form');
    $form.submit(function(){
       $.post($(this).attr('action'), $(this).serialize(), function(response){
             // do something here on success
           myFunction();
       },'json');
+       console.log("got here");
       return false;
    });
 });
