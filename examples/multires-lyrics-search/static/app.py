@@ -4,6 +4,7 @@ from flask import render_template
 #import stringComparison
 from google.cloud import datastore
 from flask import jsonify
+import requests
 
 app = Flask(__name__)
 
@@ -20,7 +21,14 @@ def go_home():
 @app.route('/result', methods=['POST'])
 def go_result():
     print("go result")
-    print(request.form)
+    print(request.form["user_input"])
+    
+    r = requests.post(url="http://0.0.0.0:45678/search", headers={'Content-Type':'application/json'}, data={'parameters':{'top_k':10}, 'data':[request.form['user_input']]})
+#curl --request POST -d '{"parameters": {"top_k": 10}}, "data": ["hello world"]}' -H 'Content-Type: application/json' 'http://0.0.0.0:45678/search'
+    r.raise_for_status()
+    print(r.json())
+
+
     return render_template("result.html",value=request.form["user_input"]) # this should be the name of your html file
 
 @app.route('/index', methods=['POST'])
@@ -33,10 +41,6 @@ def my_form_post():
     print(request.form)
     text1 = request.form['q1rf']
     text2 = request.form['q2rf']
-    #plagiarismPercent = stringComparison.extremelySimplePlagiarismChecker(text1,text2)
-    plagiarismPercent = 0
-
-
 
     # Instantiates a client
     datastore_client = datastore.Client()
@@ -71,10 +75,6 @@ def my_form_post():
     print(f"Saved {journal_entry.key.name}: {journal_entry}")
 
     return jsonify(sucess=True)
-    #if plagiarismPercent > 50 :
-    #    return "<h1>Plagiarism Detected !</h1>"
-    # else :
-    #    return "<h1>No Plagiarism Detected !</h1>"
 
 if __name__ == '__main__':
     app.run()
