@@ -1,0 +1,51 @@
+.header {
+    width:100%;
+    height:20%;
+    position:absolute;
+    top:0;
+    left:0;
+    background-color:#05A8AA;
+    display: flex;
+   
+    align-items: center;
+    align-content: center;
+    
+    font-family: 'Lato', sans-serif;
+  }
+  
+  .span{
+    display: table-cell;
+    vertical-align: middle;
+    
+  }
+  
+  .header__line {
+    margin:0;
+    margin-left: -50vw;
+    padding:0;
+    width:200%;
+    height: 20.5%;
+    float:bottom;
+    background-color:#FFE66D;
+    font-family: 'Lato', sans-serif;
+    min-width:100%
+  }
+  
+  .header__text{
+    padding-top:10px;
+    font-size:32px;
+    font-weight: bold;
+  }
+  
+  .header__content{
+    margin: 0 auto;
+    margin-bottom: 15px;
+    padding-right: 50px;
+    vertical-align: middle;
+    align-content: center;
+    display:flex;
+  }
+  
+  .header__icon{
+    width: 55%;
+  }
