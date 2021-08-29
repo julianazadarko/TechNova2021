@@ -26,26 +26,61 @@
  </div>
 </div>
 </div>
-  <div class="row">
-    <div class="column">
-      <p class="step__label">Step 1: Explore</p>
+<div class="row">
+    <div class="column is-active">
+      <p class="step__label">
+        <a data-switcher data-tab="1">Step 1: Explore</a>
+      </p>
     </div>
     <div class="column">
-      <p class="step__label">Step 2: Relate</p>
+      <p class="step__label">
+        <a data-switcher data-tab="2">Step 2: Relate</a>
+      </p>
     </div>
     <div class="column">
-      <p class="step__label">Step 3: Apply</p>
+      <p class="step__label">
+        <a data-switcher data-tab="3">Step 3: Apply</a>
+      </p>
     </div>
   </div>
-  <table class="questions">
-    <tr>
-        <td class="prompt">Tell me about this lyric: "lyric that prompted the song"</td>
-        <td><div class="prompt__resp" contentEditable="true"></div></td>
-    </tr>
-    <tr>
-      <td class="prompt">Tell me about this lyric: "lyric that prompted the song"</td>
-      <td><div class="prompt__resp" contentEditable="true"></div></td>
-    </tr>
-</table>
+  <div class="input-qs">
+    <div class="q-group is-active" data-page="1">
+      <table class="questions">
+        <tr>
+            <td class="prompt">Tell me about this lyric: ***feed lyric that prompted the song***</td>
+            <td><div class="prompt__resp" contentEditable="true"></div></td>
+        </tr>
+        <tr>
+          <td class="prompt">Which lyrics represent thoughts or ideas that are distorted, irrational, or unhealthy?</td>
+          <td><div class="prompt__resp" contentEditable="true"></div></td>
+        </tr>
+      </table>
+    </div>
+    <div class="q-group" data-page="2">
+      <table class="questions">
+        <tr>
+            <td class="prompt">How does the song connect with what you are going through?</td>
+            <td><div class="prompt__resp" contentEditable="true"></div></td>
+        </tr>
+        <tr>
+          <td class="prompt">What is going through your mind right now?</td>
+          <td><div class="prompt__resp" contentEditable="true"></div></td>
+        </tr>
+      </table>
+    </div>
+    <div class="q-group" data-page="3">
+      <table class="questions">
+        <tr>
+            <td class="prompt">How would you like to respond to the emotion you are feeling?</td>
+            <td><div class="prompt__resp" contentEditable="true"></div></td>
+        </tr>
+        <tr>
+          <td class="prompt">What would you tell a friend or close family member in a similar situation?</td>
+          <td><div class="prompt__resp" contentEditable="true"></div></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script src="tabs.js"></script>
 </body>
 </html>
